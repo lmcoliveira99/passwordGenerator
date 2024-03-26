@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --primary-color-1: #283a6a;
+    --primary-color-2: #6d88f4;
+    --neutral-color-1: #eff0f4;
+    --secondary-color-1: #574f4f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--primary-color-1);
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px
+}
+
+#padlock {
+    width: 100px;
+}
+
+#title {
+    color: var(--neutral-color-1);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#password-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    padding: 8px 18px;
+    background-color: var(--neutral-color-1);
+    color: var(--secondary-color-1);
+    font-weight: bold;
+}
+
+#password {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#copy {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: var(--secondary-color-1);
+    height: 40px;
+    width: 40px;
+    font-size: 16px;
+    transition: color .4s;
+}
+
+#copy:hover {
+    color: var(--primary-color-1);
+}
+
+#password-items {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    border-radius: 8px;
+    background-color: var(--neutral-color-1);
+    color: var(--secondary-color-1);
+    gap: 8px;
+    padding: 18px;
+}
+
+.item {
+    display: flex;
+    gap: 14px;
+}
+
+#length {
+    width: 50px;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+}
+
+#length::-webkit-inner-spin-button,
+#length::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+#size:focus {
+    outline: 1px solid var(--primary-color-1);
+}
+
+#generate {
+    background-color: var(--primary-color-1);
+    border: none;
+    margin-top: 12px;
+    padding: 10px 0px;
+    border-radius: 4px;
+    color: var(--neutral-color-1);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#generate:hover {
+    background-color: var(--primary-color-2);
+}
