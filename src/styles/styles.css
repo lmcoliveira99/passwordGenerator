@@ -2,7 +2,7 @@
 
 :root {
     --primary-color-1: #283a6a;
-    --primary-color-2: #6d88f4;
+    --primary-color-2: #5073ff;
     --neutral-color-1: #eff0f4;
     --secondary-color-1: #574f4f;
 }
@@ -120,4 +120,5 @@ body {
 
 #generate:hover {
     background-color: var(--primary-color-2);
+
 }
