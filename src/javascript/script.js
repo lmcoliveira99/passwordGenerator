@@ -38,10 +38,10 @@ function getPasswordSize() {
     // Retrieve the value entered in the size input field
     const size = document.querySelector('#length').value;
 
-    // Validate the size: must be a number between 4 and 12
-    if (isNaN(size) || size < 4 || size > 12) {
+    // Validate the size: must be a number between 4 and 16
+    if (isNaN(size) || size < 4 || size > 16) {
         // Display an error message if the size is invalid
-        message('Invalid size, must be a number between 4 and 12', 'danger');
+        message('Invalid size, must be a number between 4 and 16', 'danger');
         return null; // Return null if size is invalid
     }
 
