@@ -2,7 +2,7 @@
 
 Working password generator.
 
-Password size (4 to 12 chars), if you try to use other sizes you will receive a pop-up with an error message.
+Password size (4 to 16 chars), if you try to use other sizes you will receive a pop-up with an error message.
 
 Added a copy button, when pressed you will receive a pop-up with a message ("Password copied").
 
