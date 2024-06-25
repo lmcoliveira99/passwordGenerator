@@ -1,75 +1,77 @@
 // Function to get the selected character types
 function getChartTypes() {
-    // Retrieve the checked status of each character type checkbox
     const uppercase = document.querySelector('#uppercase').checked;
     const lowercase = document.querySelector('#lowercase').checked;
     const number = document.querySelector('#number').checked;
     const specialCharacter = document.querySelector('#special-char').checked;
 
-    // Initialize an empty array to store selected character types
     const charTypes = [];
 
-    // If uppercase is selected, add uppercase characters to charTypes array
     if (uppercase) {
         charTypes.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
     }
 
-    // If lowercase is selected, add lowercase characters to charTypes array
     if (lowercase) {
         charTypes.push('abcdefghijklmnopqrstuvwxyz');
     }
 
-    // If number is selected, add numeric characters to charTypes array
     if (number) {
         charTypes.push('0123456789');
     }
 
-    // If specialCharacter is selected, add special characters to charTypes array
     if (specialCharacter) {
         charTypes.push('!@#$%^&*()_-+={}[]|\\/?><:;"\'.,~`');
     }
 
-    // Return the array of selected character types
     return charTypes;
 }
 
 // Function to get the desired password size
 function getPasswordSize() {
-    // Retrieve the value entered in the size input field
     const size = document.querySelector('#length').value;
 
-    // Validate the size: must be a number between 4 and 16
     if (isNaN(size) || size < 4 || size > 16) {
-        // Display an error message if the size is invalid
-        message('Invalid size, must be a number between 4 and 16', 'danger');
-        return null; // Return null if size is invalid
+        displayError('Invalid size, must be a number between 4 and 16');
+        return null;
     }
 
-    // Return the validated size
+    clearError(); // Clear any existing error message
     return size;
+}
+
+// Function to display an error message
+function displayError(message) {
+    const errorElement = document.createElement('p');
+    errorElement.textContent = message;
+    errorElement.classList.add('error'); // Apply error styling
+    const passwordItems = document.querySelector('#password-items');
+    passwordItems.appendChild(errorElement);
+}
+
+// Function to clear error messages
+function clearError() {
+    const errorElement = document.querySelector('.error');
+    if (errorElement) {
+        errorElement.remove();
+    }
 }
 
 // Function to generate a password with specified size and character types
 function generatePassword(size, charTypes) {
     let passwordGenerated = '';
 
-    // Concatenate all selected character types into a single string
     const selectedChars = charTypes.join('');
 
-    // Ensure at least one character from each selected character type
     charTypes.forEach(type => {
         passwordGenerated += type[Math.floor(Math.random() * type.length)];
     });
 
-    // Generate remaining characters randomly from the selected character types
     while (passwordGenerated.length < size) {
         passwordGenerated += selectedChars[Math.floor(Math.random() * selectedChars.length)];
     }
 
-    // Shuffle the password string to enhance randomness
     passwordGenerated = passwordGenerated.split('').sort(() => Math.random() - 0.5).join('');
 
-    // Return the generated password
     return passwordGenerated;
 }
 
@@ -87,34 +89,27 @@ function message(text, status = 'success') {
 
 // Event listener for the "Generate" button
 document.querySelector('#generate').addEventListener('click', function () {
-    // Get the desired password size
     const size = getPasswordSize();
-    // If size is not valid, return and do not proceed further
     if (size === null) {
         return;
     }
 
-    // Get the selected character types
     const charTypes = getChartTypes();
-
-    // If no character type is selected, display an error message and return
     if (charTypes.length === 0) {
-        message('Select at least one character type!', 'danger');
+        displayError('Select at least one character type!');
         return;
     }
 
-    // Generate the password with the specified size and character types
+    clearError(); // Clear any existing error message
+
     const passwordGenerated = generatePassword(size, charTypes);
 
-    // Display the generated password
     document.querySelector('#password-container').classList.add('show');
     document.querySelector('#password').textContent = passwordGenerated;
 });
 
 // Event listener for the "Copy" button
 document.querySelector('#copy').addEventListener('click', function () {
-    // Copy the generated password to the clipboard
     navigator.clipboard.writeText(document.querySelector('#password').textContent);
-    // Display a success message
     message('Password copied!', 'success');
 });
